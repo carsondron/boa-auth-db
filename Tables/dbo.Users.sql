@@ -10,7 +10,8 @@ CREATE TABLE [dbo].[Users]
 [Mobile] [nvarchar] (256) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
 [MobileValidated] [bit] NOT NULL CONSTRAINT [DF__Users__MobileVal__164452B1] DEFAULT ((0)),
 [FailedLoginAttempts] [int] NOT NULL CONSTRAINT [DF__Users__FailedLog__173876EA] DEFAULT ((0)),
-[PasswordChanged] [datetime] NULL
+[PasswordChanged] [datetime] NULL,
+[NewField] [nvarchar] (256) NULL
 ) ON [PRIMARY]
 GO
 ALTER TABLE [dbo].[Users] ADD CONSTRAINT [PK_Users] PRIMARY KEY CLUSTERED  ([Id]) ON [PRIMARY]
