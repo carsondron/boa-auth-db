@@ -10,8 +10,7 @@ CREATE TABLE [dbo].[Users]
 [Mobile] [nvarchar] (256) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
 [MobileValidated] [bit] NOT NULL CONSTRAINT [DF__Users__MobileVal__164452B1] DEFAULT ((0)),
 [FailedLoginAttempts] [int] NOT NULL CONSTRAINT [DF__Users__FailedLog__173876EA] DEFAULT ((0)),
-[PasswordChanged] [datetime] NULL,
-[Test] [nvarchar] (256) NULL
+[PasswordChanged] [datetime] NULL
 ) ON [PRIMARY]
 GO
 ALTER TABLE [dbo].[Users] ADD CONSTRAINT [PK_Users] PRIMARY KEY CLUSTERED  ([Id]) ON [PRIMARY]
@@ -22,8 +21,10 @@ ALTER TABLE [dbo].[Users] ADD CONSTRAINT [FK_Users_UserStatuses] FOREIGN KEY ([S
 GO
 EXEC sp_addextendedproperty N'MS_Description', N'Contains information about a user login.', 'SCHEMA', N'dbo', 'TABLE', N'Users', NULL, NULL
 GO
-EXEC sp_addextendedproperty N'MS_Description', N'Id of user''s current active ledger', 'SCHEMA', N'dbo', 'TABLE', N'Users', 'COLUMN', N'CurrentLedger'
+
+EXEC sp_addextendedproperty N'MS_Description', N'Id of user''s current active ledger (may not be required)', 'SCHEMA', N'dbo', 'TABLE', N'Users', 'COLUMN', N'CurrentLedger'
 GO
+
 EXEC sp_addextendedproperty N'MS_Description', N'User''s email address', 'SCHEMA', N'dbo', 'TABLE', N'Users', 'COLUMN', N'Email'
 GO
 EXEC sp_addextendedproperty N'MS_Description', N'Whether user''s email address has been verified', 'SCHEMA', N'dbo', 'TABLE', N'Users', 'COLUMN', N'EmailValidated'
