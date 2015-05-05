@@ -1,3 +1,4 @@
+
 SET QUOTED_IDENTIFIER ON
 GO
 SET ANSI_NULLS ON
@@ -18,6 +19,10 @@ BEGIN
 	SET NOCOUNT ON;
 
     -- Insert statements for procedure here
-	UPDATE Users SET UserName = @newname WHERE UserName = @oldname
+    IF NOT EXISTS (SELECT UserName FROM dbo.Users WHERE UserName = @newname)
+    BEGIN
+		UPDATE Users SET UserName = @newname
+		WHERE UserName = @oldname
+	END
 END
 GO
